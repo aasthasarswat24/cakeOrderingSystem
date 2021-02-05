@@ -1,6 +1,6 @@
 @import "./variables";
-@import '~noty/src/noty.scss';
-@import '~noty/src/themes/mint.scss';
+/* @import '~noty/src/noty.scss';
+@import '~noty/src/themes/mint.scss'; */
 
 body{
     font-family: 'Roboto Condensed', sans-serif;
@@ -55,7 +55,13 @@ section.cart{
         color:$primary;
     }
 }
-section.login{
+
+/* .noty_theme_mint{
+    border-radius:50px !important;
+    padding-left:8px !important;
+} */
+
+.login{
     background:$secondary;
     min-height:calc(100vh-86px);
     a{
@@ -64,8 +70,4 @@ section.login{
             color:$primary-hover;
         }
     }
-}
-.noty_theme_mint{
-    border-radius:50px !important;
-    padding-left:8px !important;
 }
