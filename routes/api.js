@@ -1,0 +1,1 @@
+//ROUTES FILE: all the routes (api related) use in future for connecting mobile application or single paged application

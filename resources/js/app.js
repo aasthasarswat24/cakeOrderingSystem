@@ -3,13 +3,18 @@ import Noty from 'noty'
 import  initAdmin from './admin'
 import moment from 'moment'
 
+//gets all the buttons in form of array from the class add-to-cart in home.ejs
+let addToCart = document.querySelectorAll('.add-to-cart')  
 
-let addToCart = document.querySelectorAll('.add-to-cart')
 let cartCounter = document.querySelector('#cartCounter')
 
 function updateCart(brownie) {
+
+    //ajax call
+    /* Axios: a Javascript library used to make HTTP requests from node. */
    axios.post('/update-cart', brownie).then(res => {
        cartCounter.innerText = res.data.totalQty
+       //noty: shows notification for added item
        new Noty({
            type: 'success',
            timeout: 1000,
@@ -42,14 +47,12 @@ if(alertMsg) {
 }
 
 
-
-
 //change order status
 let statuses = document.querySelectorAll('.status_line')
 let hiddenInput = document.querySelector('#hiddenInput')
 let order = hiddenInput ? hiddenInput.value : null
 order = JSON.parse(order)
-//let time = document.createElement('small');
+let time = document.createElement('small');
 
 function updateStatus(order) {
     statuses.forEach((status) => {
@@ -57,8 +60,6 @@ function updateStatus(order) {
         status.classList.remove('current')
     })
     let stepCompleted = true;
-    //time.innerText = moment(order.updatedAt).format('hh:mm A')
-    //status.appendChild(time)
 
     statuses.forEach((status) => {
        let dataProp = status.dataset.status
@@ -67,6 +68,8 @@ function updateStatus(order) {
        }
        if(dataProp === order.status) {
             stepCompleted = false
+            time.innerText = moment(order.updatedAt).format('hh:mm A')
+            status.appendChild(time)
            if(status.nextElementSibling) {
             status.nextElementSibling.classList.add('current')
            }

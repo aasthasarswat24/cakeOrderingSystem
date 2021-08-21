@@ -3,7 +3,7 @@
             <div class="container mx-auto flex items-center justify-between">
             <div class="w-1/2">
                 <h5 class="text-2xl mb-3"><em>A bite of Deliciousness...</em></h5>
-                <h1 class="text-7xl px-auto mb-8 font-bold mb-3">Don't wait!!</h1>
+                <h1 class="text-3xl md:6xl px-auto mb-8 font-bold mb-3">Don't wait!!</h1>
                 <a  class="px-4 py-2 rounded-full text-white font-bold btn-primary" href="#">Order now</a>
             </div>
                     <div class="w-1/2">
@@ -17,17 +17,18 @@
 
         <section class="menu container mx-auto py-8 px-28 ">
             <h1 class="text-xl font-bold mb-8">Sweet Classics</h1>
-            <div class="grid grid-cols-4 ">
+            <div class="grid grid-cols-1 col-gap-12 row-gap-16 md:grid-cols-2 lg:grid-cols-4">
 
+            <!-- loop to fetch items present in database menu collection -->
             <% brownies.forEach(function(brownie){ %>
                 <div class="mb-14 mt-4">
                     <div>
                         <div class="w-45">
-                          <img class="h-40 mb-4 mx-auto" src="<%= brownie.image %>" alt="cake">
+                          <img class="h-40 mb-4 mx-auto" src="/images/<%= brownie.image %>" alt="menu">
                           <div class="text-center">
                             <h2 class="mb-4 text-lg"><%= brownie.name %></h2>
-                            <span class="size px-4 py-1 rounded-full uppercase text-xs"><%= brownie.size %></span>
-                            <div class="flex items-center justify-around mt-6">
+<!--                             <span class="size px-4 py-1 rounded-full uppercase text-xs"><%= brownie.size %></span>
+ -->                            <div class="flex items-center justify-around mt-6">
                                 <span class="font-bold text-lg">₹ <%= brownie.price %></span>
                                 <button data-brownie="<%= JSON.stringify(brownie) %>" 
                                     class="add-to-cart py-1 px-6 rounded-full flex items-center font-bold">

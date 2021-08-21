@@ -4,22 +4,27 @@ const app=express();
 const ejs =require('ejs');
 const path=require('path');
 const expressLayout =require("express-ejs-layouts"); 
+
 require('mongodb');
 const mongoose= require("mongoose");
 const session= require("express-session");
 const flash=require("express-flash");
 const passport = require('passport');
-const MongoDbStore=require("connect-mongo")(session);
+const MongoDbStore = require("connect-mongo")(session); 
+
 const Emitter = require('events')
 
 
 const PORT=process.env.PORT||9000;
 
 //database connection
-const url='mongodb://localhost/brownies';
+const url='mongodb://localhost/brownies';          //connection url
+
 mongoose.connect(url,{useNewUrlParser:true, useCreateIndex:true, useUnifiedTopology:true, useFindAndModify:true});
+
 const connection=mongoose.connection;
-connection.once('open',()=>{
+ 
+connection.once('open',()=>{                                  
     console.log("Database connected.......");
 }).catch(err=>{
     console.log("connection failed......")
@@ -28,29 +33,36 @@ connection.once('open',()=>{
 
 
 //session store
+
 let mongoStore=new MongoDbStore({
     mongooseConnection:connection,
     collection:'sessions'
+    //it creates a table in database in which the sessions generated are stored
 })
+
 
 //emitter
 const eventEmitter = new Emitter()
 app.set('eventEmitter', eventEmitter)
 
+
 //session config............it works as a middleware
 app.use(session({
     secret:process.env.COOKIE_SECRET,          //cookies
     resave:false,
-    store:mongoStore,
+    store:mongoStore,                          //where sessions needed to be stored
     saveUninitialized:false,
-     cookie:{maxAge:1000*60*60*24} //24hrs            //life time of cookie in mili sec
+     cookie:{maxAge:1000*60*60*24}            //24hrs     //life time of cookie in mili sec
 }))
 
+
+
 //passport config
+
 const passportInit=require('./app/config/passport')
 passportInit(passport)
 app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.session())            //it works in sessions
 
 
 app.use(flash());
@@ -81,6 +93,8 @@ app.set("views", path.join(__dirname, "/resources/views/"));
 
 app.set('view engine', 'ejs'); 
 
+
+//a function recieved form web.js which is called defining the routes present in web.js
 require('./routes/web')(app)
 
 

@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema
 
+//Schema created for user page
 
 const userSchema = new Schema({
     name:{type:String, required:true},
@@ -10,5 +11,6 @@ const userSchema = new Schema({
 
 },{timestamps:true})
 
+/* creates a model of order schemaas order which is exported */
 
 module.exports = mongoose.model('User',userSchema)

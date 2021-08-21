@@ -1,5 +1,7 @@
-<section class="login flex flex w-full justify-betweenm items-center py-28">
+<section class="login flex justify-center py-32">
     <div class="w-full max-w-xs">
+
+        <!-- calling POSt method at authcontroller.js file -->
         <form actions="/register" method="POST" class="bg-white shadow-md rounded px-8 py-6 mb-4">
             <% if(messages.error){ %>
             <span class="text-red-500 font-bold text-xs"><%= messages.error %></span>

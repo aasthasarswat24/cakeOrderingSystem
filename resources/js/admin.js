@@ -4,23 +4,26 @@ import Noty from 'noty'
 
 export default function initAdmin(socket) {
     const orderTableBody = document.querySelector('#orderTableBody') 
-    let order = []
-    let markup
+    let order = []                     //array 
+    let markup                         //table markup
+
+
+    //calling axios get method to send http request
 
     axios.get('/admin/orders', {
         headers: {
             "X-Requested-With": "XMLHttpRequest"
         }
     }).then(res => {
-        order = res.data
-        markup = generateMarkup(order)
+        order = res.data                      //storing res.data in order array
+        markup = generateMarkup(order)        //function which enerates markup and stored data 
         orderTableBody.innerHTML = markup
     }).catch(err => {
         console.log(err)
     }) 
 
-    function renderItems(items) {
-        let parsedItems = Object.values(items)
+    function renderItems(items) {                     //renders array of all items in order collection present at database
+        let parsedItems = Object.values(items)        //in form of table (ceated below)
         return parsedItems.map((menuItem) => {
             return `
                 <p>${ menuItem.items.name } - ${ menuItem.qty } pcs </p>
@@ -29,7 +32,8 @@ export default function initAdmin(socket) {
       }
 
     function generateMarkup(orders) {
-        return orders.map(order => {
+        return orders.map(order => {         //calling map fxn on orders array which finally return array for this table
+            
             return `
                 <tr>
                 <td class="border px-4 py-2 text-green-900">
@@ -71,15 +75,19 @@ export default function initAdmin(socket) {
                 </td>
                 <td class="border px-4 py-2"> </td>
                 <td class="border px-4 py-2">
-                    ${ moment(order.createdAt).format('hh:mm A') }
+                    ${ moment(order.createdAt).format('hh:mm A') }  
+ 
                 </td>
                 <td class="border px-4 py-2">
                     ${ order.paymentStatus ? 'paid' : 'Not paid' }
                 </td>
             </tr>
         `
-        }).join('')
+        }).join('')                      
     }
+
+    // whenever a customer generates order a notification (using Noty) appears to admin 
+
     socket.on('orderPlaced', () => {
         new Noty({
             type:'success',

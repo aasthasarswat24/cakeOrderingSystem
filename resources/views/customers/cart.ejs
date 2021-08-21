@@ -8,10 +8,11 @@
             <div class="burger-list mt-8">
                 <% for(let brownie of Object.values(session.cart.items)){  %>
                 <div class="flex items-center my-8">
-                    <img class="w-32" src="<%= brownie.items.image %>" alt="cart-list">
+                    
+                    <img class="w-32" src="/images/<%= brownie.items.image %>" alt="cart-list">
                     <div class=" flex-1 ml-4">
                         <h1><%= brownie.items.name %></h1>
-                        <span>MEDIUM</span>
+                       <!--  <span>MEDIUM</span> -->
                     </div class="">
                     <span class="flex-1"><%= brownie.qty %></span>
                     <span class="font-bold text-lg">₹ <%= brownie.items.price * brownie.qty %></span>

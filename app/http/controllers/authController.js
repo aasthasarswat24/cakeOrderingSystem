@@ -3,21 +3,29 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 function authController(){
+
+    /* if user is admin then only redirect to (/admin/order) page 
+    else return user to home page */
+    
     const _getRedirectUrl = (req) => {
         return req.user.role === 'admin' ? 'admin/orders' : '/customers/orders'
     }
     
     return{
+        //user login
         login(req,res){
             res.render('auth/login');
-        },
+        }, 
 
         postlogin(req, res, next){
+
             passport.authenticate('local', (err, user, info) =>{
+                //error if something wrong
                if(err){
                    req.flash('error', info.message)
                    return next(err)
                }
+               //error is not user
                if(!user){
                    req.flash('error', info.message)
                    return res.redirect('/login')
@@ -33,12 +41,12 @@ function authController(){
               })(req, res, next)
          },
 
-
+        //register - user
         register(req,res){
             res.render('auth/register');
         },
         async postRegister(req,res){
-            const {name,email,password} = req.body
+            const {name,email,password} = req.body                      
  
             // validation request
             if(!name || !email || !password){
@@ -48,7 +56,7 @@ function authController(){
                 return res.redirect('/register')
             }
 
-            // check if email exist aur not
+            // check if email already exist aur not
             User.exists({email: email},(err,result)=>{
                 if(result){
                     req.flash('error', 'Email already taken')
@@ -58,7 +66,7 @@ function authController(){
                 }
             })
 
-            // hashed password
+            // hashed password with bcrypt js (10 mould passwords can not be easily decrypted)
             const hashedPassword = await bcrypt.hash(password, 10)
 
             // Create a user

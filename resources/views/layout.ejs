@@ -13,6 +13,8 @@
 </head>
 
 <body>
+
+    <!-- navbar -->
     <nav class="container mx-auto flex items-center justify-between py-4"> 
         <div>
             <a href="/" ><img width="80px" src="/images/logo.png" alt="logo"></a>
@@ -22,17 +24,26 @@
                 <li class="ml-6"><a href="/">Menu</a></li>
                 <% if(user) { %>
                 <li class="ml-6">
-                    <form id="logout" action="/logout" method="POST">
+                    <form id="logout" action="/logout" method="POST">    
                         <a onclick="document.getElementById('logout').submit()" href="#">Logout</a>
                     </form>
+                    <!-- to  routes at web.js and calls methods logout -->
                 </li>
+
                 <% } else { %>
+                <!-- 
+                    .
+                    .
+                    to routes at web.js and calls methods register and login -->  
                 <li class="ml-6"><a href="/register">Register</a></li>
                 <li class="ml-6"><a href="/login">Login</a></li>
                 <% } %>
+
+                
                 <li class="ml-6"><a href="/cart" class="inline-block px-8 py-8 rounded-full flex items-center">
                         <span id="cartCounter"
                             class=" font-bold pr-2"><%= session.cart ? session.cart.totalQty : '' %></span>
+                            <!-- displays total no of items in the cart -->
                             <img src="/images/cart.png" width="25px" alt="cart"></a></li>
                     </a></li>
             </ul>

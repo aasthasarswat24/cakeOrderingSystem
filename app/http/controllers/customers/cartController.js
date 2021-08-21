@@ -11,6 +11,8 @@ function cartController() {
                 totalQty:0,
                 totalPrice:0
             }*/
+
+            
             //for the first time creating cart and adding basic object structure
             if(! req.session.cart){
                 req.session.cart = {
@@ -20,7 +22,8 @@ function cartController() {
                 }
             }
             let cart = req.session.cart
-            //check if items doesnot exists in the cart
+
+            //checking if items doesnot exists in the cart if not add it and if yes then icrease its quantity by 1
             if(!cart.items[req.body._id]) {
                 cart.items[req.body._id] = {
                     items:req.body,
