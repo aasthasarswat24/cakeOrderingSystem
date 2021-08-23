@@ -1,6 +1,7 @@
 "# cakeOrderingSystem" 
 <h1> DESCRIPTION </h1>
-<li> This project is a real-time Food Ordering web application, having two panels, A customer panel and an admin panel. </li>
+<p> This project is a real-time Food Ordering web application, having two panels - </p>
+<li> A customer panel and an admin panel  </li>
 <li> It contains a home page, menu page, Cart page, log in, and register pages.</li>
 <li> The role of the admin is assigned to a particular user only who is allowed to access the admin panel.</li>
 <li> A customer can order food, gets and unique order_ID, and track their orders.</li>
