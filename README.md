@@ -29,6 +29,7 @@ The customer can track the order. </li>
 
 ![Screenshot (11)](https://user-images.githubusercontent.com/78613045/130315237-ac81f18c-46d4-4d9d-bc83-99accafa4aae.png)
 <h3> Menu Page </h3>
+<h5> Menu items with a notification appraes whenever you add an item in cart (at the top right corner) </h5>
 <br>
 
 ![Screenshot (12)](https://user-images.githubusercontent.com/78613045/130315246-ebcf8b74-3ea1-42b5-9b23-02e455f7137c.png)
