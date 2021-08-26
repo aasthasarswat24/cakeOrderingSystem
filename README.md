@@ -1,4 +1,3 @@
-"# cakeOrderingSystem" 
 <h1> DESCRIPTION </h1>
 <p> This project is a real-time Food Ordering web application, having two panels - </p>
 <li> A customer panel and an admin panel  </li>
